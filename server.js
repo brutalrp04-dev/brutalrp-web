@@ -5,9 +5,9 @@ const app = express();
 const PORT = 3000;
 
 // REEMPLAZA LO QUE ESTÁ ENTRE LAS COMILLAS CON TUS LLAVES DE DISCORD:
-const CLIENT_ID = '1521120838626185256'; 
-const CLIENT_SECRET = 'DO3KrJEdzhBVtqsEeLR0hG5BKyoz5Jri';
-const REDIRECT_URI = 'http://localhost:3000/callback';
+const CLIENT_ID = '1522137380981833738'; 
+const CLIENT_SECRET = 'e_OeFw78BfxifeN8KiDZvK_rlrB-iuYT';
+const REDIRECT_URI = 'https://brutalrp.onrender.com/callback';
 
 app.use(express.static(path.join(__dirname)));
 
@@ -44,5 +44,5 @@ app.get('/callback', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('¡Servidor listo y corriendo en http://localhost:3000!');
+    console.log('¡Servidor listo y corriendo en https://brutalrp.onrender.com/callback');
 });
