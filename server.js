@@ -9,16 +9,17 @@ const CLIENT_ID = '1522137380981833738';
 const CLIENT_SECRET = 'e_OeFw78BfxifeN8KiDZvK_rlrB-iuYT';
 const REDIRECT_URI = 'https://brutalrp.onrender.com/callback';
 
-// Variable para guardar el usuario temporalmente
+// Variable para guardar el usuario al iniciar sesión
 let usuarioConectado = null;
 
 app.use(express.static(path.join(__dirname)));
 
+// Ruta para la página principal
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Ruta para que el dashboard consulte quién es el usuario
+// NUEVA RUTA: El dashboard llamará a esto para obtener los datos
 app.get('/api/user', (req, res) => {
     if (usuarioConectado) {
         res.json({ loggedIn: true, user: usuarioConectado });
@@ -47,12 +48,12 @@ app.get('/callback', async (req, res) => {
             headers: { Authorization: 'Bearer ' + accessToken }
         });
 
-        // Guardamos el usuario para enviarlo al dashboard
+        // Guardamos los datos del usuario en la variable
         usuarioConectado = userResponse.data;
 
-        // Redirigimos al panel profesional
+        // Redirigimos al panel, ya no mostramos el mensaje de "Sesión Iniciada"
         res.redirect('/dashboard.html');
-
+        
     } catch (error) {
         console.error(error);
         res.send('Error al conectar con Discord.');
@@ -60,5 +61,5 @@ app.get('/callback', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('Servidor corriendo en el puerto ' + PORT);
+    console.log('¡Servidor listo y corriendo en el puerto ' + PORT);
 });
