@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRUTAL RP - Panel</title>
-    <!-- Iconos de Google Fonts para las etiquetas informativas de la izquierda -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         /* PALETA DE COLORES: ROJO Y NEGRO */
         :root {
             --fondo-oscuro: #000000;        
-            --tarjeta-bg: rgba(10, 10, 10, 0.75); 
+            --tarjeta-bg: rgba(10, 10, 10, 0.8); 
             --color-principal: #ff0000;     
             --color-secundario: #000000;    
             --texto-blanco: #ffffff;
@@ -35,7 +34,6 @@
             position: relative;
         }
 
-        /* CONTENEDOR PRINCIPAL SIN ESTADÍSTICAS */
         .container-wrapper {
             width: 100%;
             max-width: 1200px;
@@ -51,7 +49,7 @@
             gap: 50px;
         }
 
-        /* --- COLUMNA IZQUIERDA (INFO DE TU WEB) --- */
+        /* --- COLUMNA IZQUIERDA --- */
         .left-side {
             max-width: 550px;
         }
@@ -86,9 +84,9 @@
             font-size: 16px; 
             color: #cccccc; 
             margin-bottom: 35px; 
+            line-height: 1.4;
         }
         
-        /* Cuadrícula de características */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -112,26 +110,25 @@
             font-size: 18px;
         }
 
-        /* --- COLUMNA DERECHA (TARJETA DE LOGIN) --- */
+        /* --- COLUMNA DERECHA: TARJETA DE LOGIN --- */
         .login-card {
             background: var(--tarjeta-bg);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 0, 0, 0.15); 
             width: 100%;
-            max-width: 400px;
-            padding: 40px 30px;
+            max-width: 420px;
+            padding: 35px 25px;
             border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             text-align: center;
         }
 
         .login-card h2 {
             font-size: 24px;
             font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
         }
 
         .login-card .login-desc {
@@ -140,42 +137,98 @@
             margin-bottom: 25px;
         }
 
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; font-size: 0.8rem; color: #888888; margin-bottom: 8px; text-transform: uppercase; }
-        .form-group input {
-            width: 100%; padding: 14px 16px; background: #050505; border: 1px solid rgba(255, 0, 0, 0.2);
-            border-radius: 8px; color: #fff; font-size: 1rem; transition: all 0.3s ease;
-        }
-        .form-group input:focus { outline: none; border-color: var(--color-principal); box-shadow: 0 0 10px rgba(255, 0, 0, 0.4); }
-        
-        .btn-submit {
-            width: 100%; padding: 14px; background: linear-gradient(90deg, var(--color-principal), #550000);
-            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem; font-weight: 700; cursor: pointer; text-transform: uppercase;
-            letter-spacing: 1px; transition: all 0.3s ease;
-        }
-        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4); }
-
-        .divider { margin: 25px 0; display: flex; align-items: center; color: #555555; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.08); }
-        .divider span { padding: 0 10px; }
-
-        .btn-discord {
-            width: 100%; padding: 14px; background: linear-gradient(90deg, var(--color-principal), var(--color-secundario));
-            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; 
-            justify-content: center; align-items: center; gap: 10px; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
+        .btn-discord-main {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--color-principal), var(--color-secundario));
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            margin-bottom: 25px;
         }
-        .btn-discord:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(255, 0, 0, 0.5); background: linear-gradient(90deg, #ff3333, #cc0000); }
 
-        /* --- IMAGEN FLOTANTE DEL PERSONAJE --- */
-        .character-bg {
-            position: absolute;
-            bottom: 0;
-            left: 35%;
-            height: 75vh;
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.9;
+        .btn-discord-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 0, 0, 0.5);
+            background: linear-gradient(90deg, #ff3333, #cc0000);
+        }
+
+        .info-divider {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            color: #666666;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .info-divider::before, .info-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .info-divider span {
+            padding: 0 10px;
+        }
+
+        .card-info-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 14px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+            margin-bottom: 12px;
+        }
+
+        .card-info-box .info-icon {
+            color: var(--color-principal);
+            font-size: 24px;
+            background: rgba(255, 0, 0, 0.1);
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .info-text-wrapper h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .info-text-wrapper p {
+            font-size: 12px;
+            color: #888888;
+        }
+
+        .card-terms {
+            font-size: 11px;
+            color: #666666;
+            margin-top: 25px;
+            line-height: 1.4;
+        }
+
+        .card-terms a {
+            color: var(--color-principal);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--color-principal);
+        }
+        .card-terms a:hover {
+            color: #ff3333;
+            border-bottom-style: solid;
         }
 
         .copyright {
@@ -195,7 +248,6 @@
             .left-side { text-align: center; }
             .logo-section { justify-content: center; }
             .features-grid { justify-content: center; }
-            .character-bg { display: none; }
             .copyright { position: relative; bottom: 0; right: 0; text-align: center; margin-top: 35px; }
         }
     </style>
@@ -206,21 +258,20 @@
 
         <div class="landing-grid">
             
-            <!-- PARTE IZQUIERDA -->
             <div class="left-side">
                 <div class="logo-section">
                     <img src="./logo.png" alt="Brutal Roleplay" class="logo-img">
                 </div>
                 
                 <h1 class="welcome-title">Bienvenido a<br><span>Brutal RP</span></h1>
-                <p class="brand-subtitle">La comunidad de roleplay más inmersiva de habla hispana.</p>
+                <p class="brand-subtitle">En la única comunidad de roleplay que tus sueñes se hacen realidad de latino América</p>
                 
                 <div class="features-grid">
                     <div class="feature-item">
                         <span class="material-symbols-outlined">groups</span> Comunidad activa
                     </div>
                     <div class="feature-item">
-                        <span class="material-symbols-outlined">verified_user</span> Sistema de whitelist
+                        <span class="material-symbols-outlined">diamond</span> Tienda VIP
                     </div>
                     <div class="feature-item">
                         <span class="material-symbols-outlined">stars</span> Roleplay de calidad
@@ -231,36 +282,40 @@
                 </div>
             </div>
 
-            <!-- PARTE DERECHA -->
             <div class="login-card">
                 <h2>Iniciar Sesión</h2>
-                <p class="login-desc" style="font-size: 13px; color: #888888; margin-bottom: 20px;">Accede al panel oficial</p>
+                <p class="login-desc">Conecta tu cuenta de Discord para continuar</p>
 
-                <form onsubmit="event.preventDefault();">
-                    <div class="form-group">
-                        <label>Nombre de Usuario</label>
-                        <input type="text" placeholder="Tu nombre en el juego" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Contraseña</label>
-                        <input type="password" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="btn-submit">Iniciar Sesión</button>
-                </form>
-
-                <div class="divider"><span>O</span></div>
-
-                <button class="btn-discord" onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1522137380981833738&response_type=code&redirect_uri=https%3A%2F%2Fbrutalrp.onrender.com%2Fcallback&scope=identify+guilds'">
-                    Autenticar con Discord
+                <button class="btn-discord-main" onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1522137380981833738&response_type=code&redirect_uri=https%3A%2F%2Fbrutalrp.onrender.com%2Fcallback&scope=identify+guilds'">
+                    <span class="material-symbols-outlined">login</span> Continuar con Discord
                 </button>
+
+                <div class="info-divider"><span>Información</span></div>
+
+                <div class="card-info-box">
+                    <span class="material-symbols-outlined info-icon">verified_user</span>
+                    <div class="info-text-wrapper">
+                        <h4>Conexión segura</h4>
+                        <p>Utilizamos OAuth2 de Discord</p>
+                    </div>
+                </div>
+
+                <div class="card-info-box">
+                    <span class="material-symbols-outlined info-icon">help_center</span>
+                    <div class="info-text-wrapper">
+                        <h4>¿Primera vez?</h4>
+                        <p>Te guiaremos paso a paso</p>
+                    </div>
+                </div>
+
+                <p class="card-terms">
+                    Al continuar, aceptas nuestros <a href="#">Términos de Servicio</a> y <a href="#">Política de Privacidad</a>.
+                </p>
             </div>
 
         </div>
 
     </div>
-
-    <!-- IMAGEN DEL PERSONAJE CENTRAL -->
-    <img src="personaje.png" alt="Personaje" class="character-bg">
 
     <div class="copyright">
         &copy; 2026 Brutal RP. Todos los derechos reservados.
