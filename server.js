@@ -37,8 +37,11 @@ app.get('/callback', async (req, res) => {
 
         const usuario = userResponse.data;
 
-        res.send('<div style="background:#000; color:#fff; font-family:sans-serif; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;"><h1 style="color:#ff0000;">¡SESIÓN INICIADA!</h1><p>Bienvenido a Brutal RP</p><a href="/" style="color:#fff; margin-top:20px; background:#ff0000; padding:10px 20px; text-decoration:none; border-radius:5px;">Volver</a></div>');
+        // ESTA ES LA LÍNEA QUE TE LLEVA AL PANEL PROFESIONAL:
+        res.redirect('/dashboard.html');
+
     } catch (error) {
+        console.error(error);
         res.send('Error al conectar con Discord.');
     }
 });
