@@ -64,7 +64,7 @@
 
         .logo-img { 
             width: 100%;
-            max-width: 320px; /* Ajuste para que luzca impecable el logo de image_4.png */
+            max-width: 320px; 
             height: auto; 
             filter: drop-shadow(0px 4px 20px rgba(255, 0, 0, 0.3));
         }
@@ -93,7 +93,6 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-bottom: 40px;
         }
 
         .feature-item {
@@ -111,26 +110,6 @@
         .feature-item .material-symbols-outlined {
             color: var(--color-principal);
             font-size: 18px;
-        }
-
-        /* Estadísticas */
-        .stats {
-            display: flex;
-            gap: 40px;
-        }
-
-        .stat-box h3 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .stat-box p {
-            font-size: 12px;
-            color: #888888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 2px;
         }
 
         /* --- COLUMNA DERECHA (TARJETA DE LOGIN) --- */
@@ -216,7 +195,6 @@
             .left-side { text-align: center; }
             .logo-section { justify-content: center; }
             .features-grid { justify-content: center; }
-            .stats { justify-content: center; }
             .character-bg { display: none; }
             .copyright { position: relative; bottom: 0; right: 0; text-align: center; margin-top: 35px; }
         }
@@ -228,7 +206,7 @@
 
         <div class="landing-grid">
             
-            <!-- PARTE IZQUIERDA: TU NUEVO LOGO (IMAGE_4) Y CARACTERÍSTICAS -->
+            <!-- PARTE IZQUIERDA: TU LOGO Y CARACTERÍSTICAS (SIN ESTADÍSTICAS) -->
             <div class="left-side">
                 <div class="logo-section">
                     <img src="./logo.png" alt="Brutal Roleplay" class="logo-img">
@@ -249,17 +227,6 @@
                     </div>
                     <div class="feature-item">
                         <span class="material-symbols-outlined">local_police</span> Eventos exclusivos
-                    </div>
-                </div>
-
-                <div class="stats">
-                    <div class="stat-box">
-                        <h3>1,000+</h3>
-                        <p>Usuarios activos</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>500+</h3>
-                        <p>Whitelists aprobadas</p>
                     </div>
                 </div>
             </div>
