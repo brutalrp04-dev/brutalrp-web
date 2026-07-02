@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRUTAL RP - Panel</title>
+    <!-- Iconos de Google Fonts para las etiquetas informativas de la izquierda -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
-        /* CONFIGURACIÓN DE TU MARCA: BRUTAL RP */
+        /* PALETA DE COLORES: ROJO Y NEGRO */
         :root {
             --fondo-oscuro: #000000;        
             --tarjeta-bg: rgba(10, 10, 10, 0.75); 
@@ -34,7 +35,7 @@
             position: relative;
         }
 
-        /* CONFIGURACIÓN GLOBAL DEL CONTENEDOR INTERNO */
+        /* CONTENEDOR PRINCIPAL ESTILO IMAGE_3 */
         .container-wrapper {
             width: 100%;
             max-width: 1200px;
@@ -42,7 +43,6 @@
             z-index: 2;
         }
 
-        /* --- DISEÑO DE DOS COLUMNAS EN LA LANDING --- */
         .landing-grid {
             display: flex;
             justify-content: space-between;
@@ -51,7 +51,7 @@
             gap: 50px;
         }
 
-        /* Columna izquierda de información */
+        /* --- COLUMNA IZQUIERDA (INFO DE TU WEB) --- */
         .left-side {
             max-width: 550px;
         }
@@ -64,9 +64,9 @@
 
         .logo-img { 
             width: 100%;
-            max-width: 320px; /* Ajustado para que resalte al máximo tu nuevo logo de graffiti */
+            max-width: 320px; /* Ajuste para que luzca impecable el logo de image_4.png */
             height: auto; 
-            filter: drop-shadow(0px 4px 20px rgba(255, 0, 0, 0.3)); /* Sutil brillo rojo alrededor del logo */
+            filter: drop-shadow(0px 4px 20px rgba(255, 0, 0, 0.3));
         }
 
         h1.welcome-title {
@@ -88,7 +88,7 @@
             margin-bottom: 35px; 
         }
         
-        /* Cuadrícula de características */
+        /* Cuadrícula de características de la izquierda */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -133,7 +133,7 @@
             margin-top: 2px;
         }
 
-        /* --- TARJETA DE LOGIN (LADO DERECHO) --- */
+        /* --- COLUMNA DERECHA (TARJETA DE LOGIN) --- */
         .login-card {
             background: var(--tarjeta-bg);
             backdrop-filter: blur(15px);
@@ -157,7 +157,7 @@
 
         .login-card .login-desc {
             font-size: 13px;
-            color: var(--texto-mutated);
+            color: var(--texto-mutado);
             margin-bottom: 25px;
         }
 
@@ -228,6 +228,7 @@
 
         <div class="landing-grid">
             
+            <!-- PARTE IZQUIERDA: TU NUEVO LOGO (IMAGE_4) Y CARACTERÍSTICAS -->
             <div class="left-side">
                 <div class="logo-section">
                     <img src="./logo.png" alt="Brutal Roleplay" class="logo-img">
@@ -263,6 +264,7 @@
                 </div>
             </div>
 
+            <!-- PARTE DERECHA: TARJETA DE LOGIN LIMPIA -->
             <div class="login-card">
                 <h2>Iniciar Sesión</h2>
                 <p class="login-desc" style="font-size: 13px; color: #888888; margin-bottom: 20px;">Accede al panel oficial</p>
@@ -290,6 +292,7 @@
 
     </div>
 
+    <!-- IMAGEN DEL PERSONAJE CENTRAL -->
     <img src="personaje.png" alt="Personaje" class="character-bg">
 
     <div class="copyright">
