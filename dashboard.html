@@ -1,28 +1,106 @@
-<script>
-    async function obtenerDatos() {
-        const res = await fetch('/api/user');
-        const data = await res.json();
-        
-        if (data.loggedIn) {
-            const user = data.user;
-            const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
-
-            // Nombres
-            document.getElementById('user-name-side').innerText = user.username;
-            document.getElementById('user-welcome-title').innerText = 'Bienvenido, ' + user.username;
-            document.getElementById('user-sub-tag').innerText = '@' + user.username;
-
-            // Avatares
-            const avatarSide = document.getElementById('user-avatar-side');
-            const avatarMain = document.getElementById('user-avatar-main');
-            
-            avatarSide.style.backgroundImage = 'url("' + avatarUrl + '")';
-            avatarSide.style.backgroundSize = 'cover';
-            avatarMain.style.backgroundImage = 'url("' + avatarUrl + '")';
-            avatarMain.style.backgroundSize = 'cover';
-        } else {
-            window.location.href = '/';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRUTAL RP - Panel</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        :root {
+            --bg-base: #000000;
+            --bg-cards: rgba(10, 10, 10, 0.85);
+            --bg-sidebar: #050507;
+            --accent-red: #ff0000;
+            --accent-red-hover: #b30000;
+            --border-color: rgba(255, 0, 0, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --text-green: #00ff87;
+            --text-yellow: #ffcc00;
         }
-    }
-    window.onload = obtenerDatos;
-</script>
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+
+        body {
+            background: radial-gradient(circle at 80% 20%, #2a0808 0%, #0a0505 60%, #000000 100%);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar { width: 250px; background-color: var(--bg-sidebar); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between; padding: 20px; }
+        .user-pill { display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.02); padding: 10px; border-radius: 10px; margin-bottom: 25px; border: 1px solid var(--border-color); }
+        .user-pill-avatar { width: 35px; height: 35px; border-radius: 50%; background: #222; border: 2px solid var(--accent-red); background-size: cover; background-position: center; }
+        
+        .main-wrapper { flex: 1; display: flex; flex-direction: column; }
+        .topbar { height: 65px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; background: rgba(0,0,0,0.2); }
+        .btn-action-red { background: var(--accent-red); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        
+        .content-grid { padding: 25px; display: grid; grid-template-columns: 1fr 350px; gap: 20px; }
+        .welcome-card { background: linear-gradient(90deg, #120303 0%, rgba(10,10,10,0.9) 100%); border: 1px solid var(--border-color); border-radius: 14px; padding: 20px; display: flex; align-items: center; gap: 15px; }
+        .welcome-big-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--accent-red); background: #222; background-size: cover; background-position: center; }
+        
+        .panel-box { background-color: var(--bg-cards); border: 1px solid rgba(255, 0, 0, 0.08); border-radius: 14px; padding: 20px; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div>
+            <div class="user-pill">
+                <div id="user-avatar-side" class="user-pill-avatar"></div>
+                <div>
+                    <h4 id="user-name-side">Cargando...</h4>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="topbar">
+            <h1>Dashboard</h1>
+        </header>
+
+        <div class="content-grid">
+            <div class="welcome-card">
+                <div id="user-avatar-main" class="welcome-big-avatar"></div>
+                <div>
+                    <h3 id="user-welcome-title">Cargando...</h3>
+                    <p id="user-sub-tag">@...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function obtenerDatos() {
+            try {
+                const res = await fetch('/api/user');
+                const data = await res.json();
+                
+                if (data.loggedIn) {
+                    const user = data.user;
+                    const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+
+                    // Nombres
+                    document.getElementById('user-name-side').innerText = user.username;
+                    document.getElementById('user-welcome-title').innerText = 'Bienvenido, ' + user.username;
+                    document.getElementById('user-sub-tag').innerText = '@' + user.username;
+
+                    // Avatares
+                    const avatarSide = document.getElementById('user-avatar-side');
+                    const avatarMain = document.getElementById('user-avatar-main');
+                    
+                    avatarSide.style.backgroundImage = 'url("' + avatarUrl + '")';
+                    avatarMain.style.backgroundImage = 'url("' + avatarUrl + '")';
+                } else {
+                    window.location.href = '/';
+                }
+            } catch (err) {
+                console.error("Error al cargar:", err);
+            }
+        }
+        window.onload = obtenerDatos;
+    </script>
+</body>
+</html>
