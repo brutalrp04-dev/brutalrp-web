@@ -4,15 +4,27 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-// REEMPLAZA LO QUE ESTÁ ENTRE LAS COMILLAS CON TUS LLAVES DE DISCORD:
+// TUS CREDENCIALES
 const CLIENT_ID = '1522137380981833738'; 
 const CLIENT_SECRET = 'e_OeFw78BfxifeN8KiDZvK_rlrB-iuYT';
 const REDIRECT_URI = 'https://brutalrp.onrender.com/callback';
+
+// Variable para guardar el usuario temporalmente
+let usuarioConectado = null;
 
 app.use(express.static(path.join(__dirname)));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Ruta para que el dashboard consulte quién es el usuario
+app.get('/api/user', (req, res) => {
+    if (usuarioConectado) {
+        res.json({ loggedIn: true, user: usuarioConectado });
+    } else {
+        res.json({ loggedIn: false });
+    }
 });
 
 app.get('/callback', async (req, res) => {
@@ -35,9 +47,10 @@ app.get('/callback', async (req, res) => {
             headers: { Authorization: 'Bearer ' + accessToken }
         });
 
-        const usuario = userResponse.data;
+        // Guardamos el usuario para enviarlo al dashboard
+        usuarioConectado = userResponse.data;
 
-        // ESTA ES LA LÍNEA QUE TE LLEVA AL PANEL PROFESIONAL:
+        // Redirigimos al panel profesional
         res.redirect('/dashboard.html');
 
     } catch (error) {
@@ -47,5 +60,5 @@ app.get('/callback', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('¡Servidor listo y corriendo en https://brutalrp.onrender.com/callback');
+    console.log('Servidor corriendo en el puerto ' + PORT);
 });
