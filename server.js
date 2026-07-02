@@ -4,22 +4,20 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-// TUS CREDENCIALES
 const CLIENT_ID = '1522137380981833738'; 
 const CLIENT_SECRET = 'e_OeFw78BfxifeN8KiDZvK_rlrB-iuYT';
 const REDIRECT_URI = 'https://brutalrp.onrender.com/callback';
 
-// Variable para guardar el usuario al iniciar sesión
+// Variable para almacenar el usuario temporalmente
 let usuarioConectado = null;
 
 app.use(express.static(path.join(__dirname)));
 
-// Ruta para la página principal
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// NUEVA RUTA: El dashboard llamará a esto para obtener los datos
+// Ruta API para que el Dashboard obtenga los datos del usuario
 app.get('/api/user', (req, res) => {
     if (usuarioConectado) {
         res.json({ loggedIn: true, user: usuarioConectado });
@@ -48,10 +46,10 @@ app.get('/callback', async (req, res) => {
             headers: { Authorization: 'Bearer ' + accessToken }
         });
 
-        // Guardamos los datos del usuario en la variable
+        // Guardamos los datos del usuario en la variable del servidor
         usuarioConectado = userResponse.data;
 
-        // Redirigimos al panel, ya no mostramos el mensaje de "Sesión Iniciada"
+        // Redirigimos al panel
         res.redirect('/dashboard.html');
         
     } catch (error) {
@@ -61,5 +59,5 @@ app.get('/callback', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('¡Servidor listo y corriendo en el puerto ' + PORT);
+    console.log('Servidor listo en el puerto ' + PORT);
 });
