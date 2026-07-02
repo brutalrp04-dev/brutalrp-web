@@ -84,6 +84,8 @@
             background: #222;
             border: 2px solid var(--accent-red);
             box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+            background-size: cover;
+            background-position: center;
         }
         .user-pill-info h4 {
             font-size: 13px;
@@ -219,6 +221,8 @@
         .welcome-big-avatar {
             width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--accent-red); background: #222;
             box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+            background-size: cover;
+            background-position: center;
         }
         .welcome-profile-text h3 { font-size: 18px; font-weight: 700; }
         .welcome-profile-text p { font-size: 12px; color: var(--text-muted); }
@@ -484,21 +488,19 @@
                 const datos = await respuesta.json();
 
                 if (datos.loggedIn) {
-                    document.getElementById('user-name-side').innerText = datos.user.username;
-                    document.getElementById('user-welcome-title').innerText = Bienvenido, ${datos.user.username};
-                    document.getElementById('user-sub-tag').innerText = @${datos.user.username} • 0d en el servidor;
+                    const user = datos.user;
+                    // Construcción correcta de la URL del avatar de Discord
+                    const avatarUrl = https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png;
 
-                    const urlAvatar = datos.user.avatar;
+                    document.getElementById('user-name-side').innerText = user.username;
+                    document.getElementById('user-welcome-title').innerText = Bienvenido, ${user.username};
+                    document.getElementById('user-sub-tag').innerText = @${user.username} • Usuario verificado;
+
                     const avatarSide = document.getElementById('user-avatar-side');
                     const avatarMain = document.getElementById('user-avatar-main');
 
-                    avatarSide.style.backgroundImage = url('${urlAvatar}');
-                    avatarSide.style.backgroundSize = 'cover';
-                    avatarSide.style.backgroundPosition = 'center';
-
-                    avatarMain.style.backgroundImage = url('${urlAvatar}');
-                    avatarMain.style.backgroundSize = 'cover';
-                    avatarMain.style.backgroundPosition = 'center';
+                    avatarSide.style.backgroundImage = url('${avatarUrl}');
+                    avatarMain.style.backgroundImage = url('${avatarUrl}');
                 } else {
                     window.location.href = 'index.html';
                 }
